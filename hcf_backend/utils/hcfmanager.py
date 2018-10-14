@@ -11,6 +11,7 @@ import argparse
 
 from scrapinghub import ScrapinghubClient
 
+from hcf_backend.utils import get_apikey
 from hcf_backend.utils.hcfpal import HCFPal
 
 
@@ -28,7 +29,8 @@ class HCFSpiderManager(object):
         parser.add_argument('--max-jobs', help='Max number of jobs for the given spider allowed to run in parallel.\
                             Default is %(default)s.', type=int, default=1)
         parser.add_argument('--apikey',
-                            help='API key to use for HCF access. Uses SH_APIKEY environment variable if not given')
+                            help='API key to use for HCF access. Uses SH_APIKEY environment variable if not given',
+                            default=get_apikey())
         parser.add_argument('--spider-args', help='Spider arguments dict in json format', default='{}')
         parser.add_argument('--loop-mode', help='If provided, manager will run in loop mode, with a cycle each given\
                             number of seconds.', type=int, metavar='SECONDS')
